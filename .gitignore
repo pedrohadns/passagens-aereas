@@ -1,0 +1,6 @@
+# Ignorar arquivo do SonarQube
+compile_commands.json
+# Ignorar arquivo das orientações do trabalho
+TrabalhoDisciplina2024_2.pdf
+# Ignorar arquivo workspace do VSCode
+*.code-workspace
