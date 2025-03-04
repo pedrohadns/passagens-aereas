@@ -1,64 +1,123 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+
+#define COR_VERDE "\x1b[32m"   
+#define COR_VERMELHO "\x1b[31m" 
+#define RESET "\x1b[0m" 
+
+#define LINHAS 10
+#define COLUNAS 10
+#define ARQUIVO_ASSENTOS "assentos.dat"
+
 typedef struct {
-    char assento[4]; // quantidade de assentos (ex: "10A")
-    int disponivel;  // 1 = disponível, 0 = indisponível  
+    char assento[4];  // Nome do assento (ex: "10A")
+    int disponivel;   // 1 = disponível, 0 = ocupado
 } Assento;
+
 typedef struct {
-    Assento n_assentos[10][10]; // usei matriz para informar os locais dos assentos (pode ser que tenha muitos assentos)
+    Assento n_assentos[LINHAS][COLUNAS]; 
 } Matriz;
-// iniciar a matriz de assentos
-void iniciar_matriz(Matriz *m) {
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            snprintf(m->n_assentos[i][j].assento, 4, "%d%c", i + 1, 'A' + j); // vai colocar o nome do assento (ex: "1A", "1B", etc.)
-            m->n_assentos[i][j].disponivel = 1; // vai marcar TODOS os assentos como disponiveis
-        }
+
+// salvar os assentos no arquivo
+void salvar_assentos(Matriz *m) {
+    FILE *file = fopen(ARQUIVO_ASSENTOS, "wb");
+    if (file == NULL) {
+        printf("Erro ao salvar os assentos.\n");
+        return;
     }
+    fwrite(m, sizeof(Matriz), 1, file);
+    fclose(file);
 }
-// exibir os assentos disponíveis
-void exibir_assentos_disponiveis(Matriz *m) {
-    printf("Assentos disponíveis:\n");
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            if (m->n_assentos[i][j].disponivel == 1) {
-                printf("[%s] ", m->n_assentos[i][j].assento); // mostra o assento disponível
-            } else {
-                printf("[X] "); // foi para ficar clean e deixar o assento indisponivel com uma marca (ideia do chat gpt(desculpa))
+
+// carregar os assentos do arquivo
+void carregar_assentos(Matriz *m) {
+    FILE *file = fopen(ARQUIVO_ASSENTOS, "rb");
+    if (file != NULL) {
+        fread(m, sizeof(Matriz), 1, file);
+        fclose(file);
+    } else {
+        // Se o arquivo não existir, inicializa a matriz com assentos disponíveis
+        for (int i = 0; i < LINHAS; i++) {
+            for (int j = 0; j < COLUNAS; j++) {
+                snprintf(m->n_assentos[i][j].assento, 4, "%d%c", i + 1, 'A' + j);
+                m->n_assentos[i][j].disponivel = 1;
             }
         }
+        salvar_assentos(m);  
     }
 }
-//escolher um assento
+
+void exibir_assentos_disponiveis(Matriz *m) {
+    printf("\n Visualização dos Assentos:\n");
+    for (int i = 0; i < LINHAS; i++) {
+        for (int j = 0; j < COLUNAS; j++) {
+            if (m->n_assentos[i][j].disponivel == 1) {
+                printf(COR_VERDE "[%s] " RESET, m->n_assentos[i][j].assento);
+            } else {
+                printf(COR_VERMELHO "[X] " RESET);
+            }
+        }
+        printf("\n");
+    }
+}
+
 void escolha_de_assento(Matriz *m) {
     char escolha[4];
-    exibir_assentos_disponiveis(m); // Exibe os assentos disponíveis
+    exibir_assentos_disponiveis(m); 
 
-    printf("\nEscolha o assento: ");
-    scanf("%s", escolha); // escolha é onde ficar o assento que o usuario escolheu (deu certo)
+    printf("\nEscolha um assento: ");
+    scanf("%s", escolha);
 
-    // procura o assento escolhido dentro da matriz
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            if (strcmp(m->n_assentos[i][j].assento, escolha) == 0) { // faz uma comparação entre os assentos (strcmp)
+    // Procurar o assento na matriz
+    for (int i = 0; i < LINHAS; i++) {
+        for (int j = 0; j < COLUNAS; j++) {
+            if (strcmp(m->n_assentos[i][j].assento, escolha) == 0) {
                 if (m->n_assentos[i][j].disponivel == 1) {
-                    m->n_assentos[i][j].disponivel = 0; // marca o assento como usado
-                    printf("Assento %s escolhido!\n", escolha);
-                    return; // aqui vai o return para etapa 4
+                    m->n_assentos[i][j].disponivel = 0;
+                    printf("assento %s escolhido com sucesso! tenha uma boa viagem\n", escolha);
+                    salvar_assentos(m);  // Atualiza o arquivo com a nova reserva
+                    return;
                 } else {
-                    printf("O assento %s está indisponível. Por favor, escolha outro.\n", escolha);
-                    escolha_de_assento(m); // aqui chama outro assento 
-                    return escolha_de_assento(m);
+                    printf("infelizmente o assento %s já está ocupado! Por favor, escolha outro.\n", escolha);
+                    escolha_de_assento(m); 
+                    return;
                 }
             }
         }
     }
-    printf("Assento não existe. Tente novamente e tome cuidado com a digitação\n");
+    printf("escorregou ai? Código de assento inválido!\n");
     escolha_de_assento(m);
 }
+
+
 int main() {
     Matriz m;
-    iniciar_matriz(&m); 
-    escolha_de_assento(&m); 
+    carregar_assentos(&m); 
+
+    int opcao;
+    do {
+        printf("\n==== SELEÇÃO DE ASSENTOS ====\n");
+        printf("[1] Mostrar assentos\n");
+        printf("[2] Reservar assento\n");
+        printf("[0] Sair\n");
+        printf("o'que deseja? ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                exibir_assentos_disponiveis(&m);
+                break;
+            case 2:
+                escolha_de_assento(&m);
+                break;
+            case 0:
+                printf("ação encerrada\n");
+                break;
+            default:
+                printf("Opção inválida! Tente novamente.\n");
+        }
+    } while (opcao != 0);
+
     return 0;
 }
