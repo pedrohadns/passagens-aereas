@@ -4,3 +4,9 @@ compile_commands.json
 TrabalhoDisciplina2024_2.pdf
 # Ignorar arquivo workspace do VSCode
 *.code-workspace
+# Ignorar pasta do VSCode
+.vscode/
+# Ignorar pasta output
+output/
+# Ignorar o arquivo de teste
+teste.c
