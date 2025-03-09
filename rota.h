@@ -31,3 +31,4 @@ void imprimeStringnoArquivo (FILE *arquivo, char *string);
 void lerHorario (Voo *voo);
 void lerDiaSemana (Voo *voo);
 void incluirVoo ();
+Voo *criarVetorVoos (unsigned int quantidadeVoos);

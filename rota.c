@@ -90,7 +90,8 @@ void escreveArquivo (FILE *arquivo, Voo voo){
     fputs (str_numero_convertido, arquivo);
     sprintf (str_numero_convertido, "%d;", voo.minutoVoo);
     fputs (str_numero_convertido, arquivo);
-    imprimeStringnoArquivo (arquivo, &voo.ehRegular);
+    sprintf (str_numero_convertido, "%c;", voo.ehRegular);
+    fputs (str_numero_convertido, arquivo);
     sprintf (str_numero_convertido, "%d;", voo.diaSemana);
     fputs (str_numero_convertido, arquivo);
     sprintf (str_numero_convertido, "%d;", voo.poltronasDisponiveis);
@@ -123,11 +124,10 @@ void lerHorario (Voo *voo){
 }
 
 void incluirVoo (){
-    unsigned int qntVoos = 1;
     FILE *arquivo = fopen ("voos.dat", "a+");
     if (arquivo == NULL){
         printf ("Erro ao abrir o arquivo\n");
-        return;
+        incluirVoo ();
     }
     Voo novoVoo; // Declara uma variável do tipo 'voo' para armazenar os dados do voô a ser cadastrado
     novoVoo.codigoRota = obterCodigoVooAnterior (arquivo);
@@ -153,4 +153,40 @@ void incluirVoo (){
     fseek (arquivo, 0, SEEK_END);
     escreveArquivo (arquivo, novoVoo);
     fclose (arquivo);
+}
+
+Voo *criarVetorVoos (unsigned int quantidadeVoos){
+    FILE *arquivoVoos = fopen ("voos.dat", "r");
+    if (arquivoVoos == NULL){
+        printf ("Erro ao abrir o arquivo de voos.\n");
+        return NULL;
+    }
+    Voo *vetorVoos;
+    vetorVoos = (Voo *) malloc (quantidadeVoos * sizeof (Voo));
+    if (vetorVoos == NULL){
+        printf ("Erro ao alocar memória.\n");
+        return NULL;
+    }
+
+    for (unsigned int i = 0; i < quantidadeVoos; i++){
+        fscanf (arquivoVoos, "%u;%4[^;];%50[^;];%50[^;];%3[^;];%4[^;];%50[^;];%50[^;];%3[^;];%100[^;];%u;%u;%c;%u;%u;%lf\n",
+            &vetorVoos[i].codigoRota, 
+            vetorVoos[i].origem.codigoAeroporto, 
+            vetorVoos[i].origem.nomeAeroporto, 
+            vetorVoos[i].origem.cidade, 
+            vetorVoos[i].origem.estado, 
+            vetorVoos[i].destino.codigoAeroporto, 
+            vetorVoos[i].destino.nomeAeroporto, 
+            vetorVoos[i].destino.cidade, 
+            vetorVoos[i].destino.estado, 
+            vetorVoos[i].nomeRota, 
+            &vetorVoos[i].horaVoo, 
+            &vetorVoos[i].minutoVoo, 
+            &vetorVoos[i].ehRegular, 
+            &vetorVoos[i].diaSemana, 
+            &vetorVoos[i].poltronasDisponiveis, 
+            &vetorVoos[i].distancia);
+    }
+    fclose (arquivoVoos);
+    return vetorVoos;
 }
