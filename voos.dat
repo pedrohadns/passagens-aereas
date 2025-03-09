@@ -1,31 +1,31 @@
-0;GRU;Guarulhos;Sao Paulo;SP;SDU;Santos Dumont;Rio de Janeiro;RJ;Guarulhos[GRU] - Santos Dumont[SDU];8;0;s;2;150;222
-1;CGH;Congonhas;Sao Paulo;SP;CNF;Confins;Belo Horizonte;MG;Congonhas[CGH] - Confins[CNF];9;0;s;3;200;305
-2;CGH;Congonhas;Sao Paulo;SP;VIX;Eurico Salles;Vitoria;ES;Congonhas[CGH] - Eurico Salles[VIX];12;30;s;4;150;462
-3;CGH;Congonhas;Sao Paulo;SP;SDU;Santos Dumont;Rio de Janeiro;RJ;Congonhas[CGH] - Santos Dumont[SDU];8;30;n;0;180;222
-4;CGH;Congonhas;Sao Paulo;SP;VIX;Eurico de Aguiar Salles;Vitoria;ES;Congonhas[CGH] - Eurico de Aguiar Salles[VIX];12;45;n;0;180;462
-5;SDU;Santos Dumont;Rio de Janeiro;RJ;VIX;Eurico de Aguiar Salles;Vitoria;ES;Santos Dumont[SDU] - Eurico de Aguiar Salles[VIX];14;20;n;0;180;257
-6;CGH;Congonhas;Sao Paulo;SP;FOR;Pinto Martins;Fortaleza;CE;Congonhas[CGH] - Pinto Martins[FOR];6;0;n;0;180;1474
-7;CGH;Congonhas;Sao Paulo;SP;BSB;Presidente Juscelino Kubitschek;Brasilia;DF;Congonhas[CGH] - Presidente Juscelino Kubitschek[BSB];9;50;n;0;180;541
-8;POA;Salgado Filho;Porto Alegre;RS;CGH;Congonhas;Sao Paulo;SP;Salgado Filho[POA] - Congonhas[CGH];7;25;n;0;180;531
-9;VIX;Eurico de Aguiar Salles;Vitoria;ES;REC;Guararapes;Recife;PE;Eurico de Aguiar Salles[VIX] - Guararapes[REC];11;10;n;0;180;924
-10;CGH;Congonhas;Sao Paulo;SP;SSA;Deputado Luis Eduardo Magalhaes;Salvador;BA;Congonhas[CGH] - Deputado Luis Eduardo Magalhaes[SSA];15;40;n;0;180;864
-11;GIG;Galeao;Rio de Janeiro;RJ;MAO;Eduardo Gomes;Manaus;AM;Galeao[GIG] - Eduardo Gomes[MAO];18;30;s;2;180;1770
-12;BSB;Presidente Juscelino Kubitschek;Brasilia;DF;CWB;Afonso Pena;Curitiba;PR;Presidente Juscelino Kubitschek[BSB] - Afonso Pena[CWB];13;15;n;0;180;635
-13;FOR;Pinto Martins;Fortaleza;CE;BEL;Val de Cans;Belem;PA;Pinto Martins[FOR] - Val de Cans[BEL];16;20;s;5;180;725
-14;REC;Guararapes;Recife;PE;NAT;Augusto Severo;Natal;RN;Guararapes[REC] - Augusto Severo[NAT];9;45;n;0;180;190
-15;CWB;Afonso Pena;Curitiba;PR;FLN;Hercilio Luz;Florianopolis;SC;Afonso Pena[CWB] - Hercilio Luz[FLN];7;50;n;0;180;190
-16;POA;Salgado Filho;Porto Alegre;RS;MCZ;Zumbi dos Palmares;Maceio;AL;Salgado Filho[POA] - Zumbi dos Palmares[MCZ];10;30;s;3;180;1930
-17;MAO;Eduardo Gomes;Manaus;AM;BEL;Val de Cans;Belem;PA;Eduardo Gomes[MAO] - Val de Cans[BEL];14;5;n;0;180;805
-18;SSA;Deputado Luis Eduardo Magalhaes;Salvador;BA;NAT;Augusto Severo;Natal;RN;Deputado Luis Eduardo Magalhaes[SSA] - Augusto Severo[NAT];8;10;n;0;180;485
-19;GIG;Galeao;Rio de Janeiro;RJ;CGB;Marechal Rondon;Cuiaba;MT;Galeao[GIG] - Marechal Rondon[CGB];17;55;n;0;180;1130
-20;BSB;Presidente Juscelino Kubitschek;Brasilia;DF;GYN;Santa Genoveva;Goiania;GO;Presidente Juscelino Kubitschek[BSB] - Santa Genoveva[GYN];12;25;n;0;180;110
-21;FOR;Pinto Martins;Fortaleza;CE;MCZ;Zumbi dos Palmares;Maceio;AL;Pinto Martins[FOR] - Zumbi dos Palmares[MCZ];19;40;s;4;180;820
-22;CWB;Afonso Pena;Curitiba;PR;IGU;Cataratas;Foz do Iguacu;PR;Afonso Pena[CWB] - Cataratas[IGU];6;35;n;0;180;380
-23;VIX;Eurico de Aguiar Salles;Vitoria;ES;CGB;Marechal Rondon;Cuiaba;MT;Eurico de Aguiar Salles[VIX] - Marechal Rondon[CGB];15;15;n;0;180;1235
-24;SSA;Deputado Luis Eduardo Magalhaes;Salvador;BA;GYN;Santa Genoveva;Goiania;GO;Deputado Luis Eduardo Magalhaes[SSA] - Santa Genoveva[GYN];11;50;s;6;180;850
-25;CGH;Congonhas;Sao Paulo;SP;MCZ;Zumbi dos Palmares;Maceio;AL;Congonhas[CGH] - Zumbi dos Palmares[MCZ];20;25;n;0;180;1250
-26;GIG;Galeao;Rio de Janeiro;RJ;FLN;Hercilio Luz;Florianopolis;SC;Galeao[GIG] - Hercilio Luz[FLN];9;30;n;0;180;750
-27;BSB;Presidente Juscelino Kubitschek;Brasilia;DF;MAO;Eduardo Gomes;Manaus;AM;Presidente Juscelino Kubitschek[BSB] - Eduardo Gomes[MAO];22;0;s;7;180;1190
-28;FOR;Pinto Martins;Fortaleza;CE;GIG;Galeao;Rio de Janeiro;RJ;Pinto Martins[FOR] - Galeao[GIG];16;55;n;0;180;1380
-29;REC;Guararapes;Recife;PE;CWB;Afonso Pena;Curitiba;PR;Guararapes[REC] - Afonso Pena[CWB];13;5;s;1;180;1700
-30;VIX;Eurico de Aguiar Salles;Vitoria;ES;CWB;Afonso Pena;Curitiba;PR;Eurico de Aguiar Salles[VIX] - Afonso Pena[CWB];12;45;s;6;180;673,000000
+0;GRU;Guarulhos;Sao Paulo;SP;SDU;Santos Dumont;Rio de Janeiro;RJ;Guarulhos[GRU] - Santos Dumont[SDU];8;0;N;1;150;222
+1;CGH;Congonhas;Sao Paulo;SP;CNF;Confins;Belo Horizonte;MG;Congonhas[CGH] - Confins[CNF];9;0;N;6;200;305
+2;CGH;Congonhas;Sao Paulo;SP;VIX;Eurico Salles;Vitoria;ES;Congonhas[CGH] - Eurico Salles[VIX];12;30;N;2;150;462
+3;CGH;Congonhas;Sao Paulo;SP;SDU;Santos Dumont;Rio de Janeiro;RJ;Congonhas[CGH] - Santos Dumont[SDU];8;30;s;0;180;222
+4;CGH;Congonhas;Sao Paulo;SP;VIX;Eurico de Aguiar Salles;Vitoria;ES;Congonhas[CGH] - Eurico de Aguiar Salles[VIX];12;45;s;0;180;462
+5;SDU;Santos Dumont;Rio de Janeiro;RJ;VIX;Eurico de Aguiar Salles;Vitoria;ES;Santos Dumont[SDU] - Eurico de Aguiar Salles[VIX];14;20;s;0;180;257
+6;CGH;Congonhas;Sao Paulo;SP;FOR;Pinto Martins;Fortaleza;CE;Congonhas[CGH] - Pinto Martins[FOR];6;0;s;0;180;1474
+7;CGH;Congonhas;Sao Paulo;SP;BSB;Presidente Juscelino Kubitschek;Brasilia;DF;Congonhas[CGH] - Presidente Juscelino Kubitschek[BSB];9;50;s;0;180;541
+8;POA;Salgado Filho;Porto Alegre;RS;CGH;Congonhas;Sao Paulo;SP;Salgado Filho[POA] - Congonhas[CGH];7;25;s;0;180;531
+9;VIX;Eurico de Aguiar Salles;Vitoria;ES;REC;Guararapes;Recife;PE;Eurico de Aguiar Salles[VIX] - Guararapes[REC];11;10;s;0;180;924
+10;CGH;Congonhas;Sao Paulo;SP;SSA;Deputado Luis Eduardo Magalhaes;Salvador;BA;Congonhas[CGH] - Deputado Luis Eduardo Magalhaes[SSA];15;40;s;0;180;864
+11;GIG;Galeao;Rio de Janeiro;RJ;MAO;Eduardo Gomes;Manaus;AM;Galeao[GIG] - Eduardo Gomes[MAO];18;30;N;2;180;1770
+12;BSB;Presidente Juscelino Kubitschek;Brasilia;DF;CWB;Afonso Pena;Curitiba;PR;Presidente Juscelino Kubitschek[BSB] - Afonso Pena[CWB];13;15;s;0;180;635
+13;FOR;Pinto Martins;Fortaleza;CE;BEL;Val de Cans;Belem;PA;Pinto Martins[FOR] - Val de Cans[BEL];16;20;N;3;180;725
+14;REC;Guararapes;Recife;PE;NAT;Augusto Severo;Natal;RN;Guararapes[REC] - Augusto Severo[NAT];9;45;s;0;180;190
+15;CWB;Afonso Pena;Curitiba;PR;FLN;Hercilio Luz;Florianopolis;SC;Afonso Pena[CWB] - Hercilio Luz[FLN];7;50;s;0;180;190
+16;POA;Salgado Filho;Porto Alegre;RS;MCZ;Zumbi dos Palmares;Maceio;AL;Salgado Filho[POA] - Zumbi dos Palmares[MCZ];10;30;N;1;180;1930
+17;MAO;Eduardo Gomes;Manaus;AM;BEL;Val de Cans;Belem;PA;Eduardo Gomes[MAO] - Val de Cans[BEL];14;5;s;0;180;805
+18;SSA;Deputado Luis Eduardo Magalhaes;Salvador;BA;NAT;Augusto Severo;Natal;RN;Deputado Luis Eduardo Magalhaes[SSA] - Augusto Severo[NAT];8;10;s;0;180;485
+19;GIG;Galeao;Rio de Janeiro;RJ;CGB;Marechal Rondon;Cuiaba;MT;Galeao[GIG] - Marechal Rondon[CGB];17;55;s;0;180;1130
+20;BSB;Presidente Juscelino Kubitschek;Brasilia;DF;GYN;Santa Genoveva;Goiania;GO;Presidente Juscelino Kubitschek[BSB] - Santa Genoveva[GYN];12;25;s;0;180;110
+21;FOR;Pinto Martins;Fortaleza;CE;MCZ;Zumbi dos Palmares;Maceio;AL;Pinto Martins[FOR] - Zumbi dos Palmares[MCZ];19;40;N;6;180;820
+22;CWB;Afonso Pena;Curitiba;PR;IGU;Cataratas;Foz do Iguacu;PR;Afonso Pena[CWB] - Cataratas[IGU];6;35;s;0;180;380
+23;VIX;Eurico de Aguiar Salles;Vitoria;ES;CGB;Marechal Rondon;Cuiaba;MT;Eurico de Aguiar Salles[VIX] - Marechal Rondon[CGB];15;15;s;0;180;1235
+24;SSA;Deputado Luis Eduardo Magalhaes;Salvador;BA;GYN;Santa Genoveva;Goiania;GO;Deputado Luis Eduardo Magalhaes[SSA] - Santa Genoveva[GYN];11;50;N;6;180;850
+25;CGH;Congonhas;Sao Paulo;SP;MCZ;Zumbi dos Palmares;Maceio;AL;Congonhas[CGH] - Zumbi dos Palmares[MCZ];20;25;s;0;180;1250
+26;GIG;Galeao;Rio de Janeiro;RJ;FLN;Hercilio Luz;Florianopolis;SC;Galeao[GIG] - Hercilio Luz[FLN];9;30;s;0;180;750
+27;BSB;Presidente Juscelino Kubitschek;Brasilia;DF;MAO;Eduardo Gomes;Manaus;AM;Presidente Juscelino Kubitschek[BSB] - Eduardo Gomes[MAO];22;0;N;6;180;1190
+28;FOR;Pinto Martins;Fortaleza;CE;GIG;Galeao;Rio de Janeiro;RJ;Pinto Martins[FOR] - Galeao[GIG];16;55;s;0;180;1380
+29;REC;Guararapes;Recife;PE;CWB;Afonso Pena;Curitiba;PR;Guararapes[REC] - Afonso Pena[CWB];13;5;N;5;180;1700
+30;VIX;Eurico de Aguiar Salles;Vitoria;ES;CWB;Afonso Pena;Curitiba;PR;Eurico de Aguiar Salles[VIX] - Afonso Pena[CWB];12;45;N;1;180;673

@@ -135,13 +135,13 @@ void incluirVoo (){
     cadastrarAeroporto (&novoVoo.destino, 'd');
     criarNomeRota (novoVoo.nomeRota, novoVoo);
     lerHorario (&novoVoo);
-    printf ("O voo é regular? (s/n): ");
+    printf ("O voo é regular? Voos regulares acontecem todos os dias (s/n): ");
     scanf (" %c", &novoVoo.ehRegular);
-    if (novoVoo.ehRegular == 's' || novoVoo.ehRegular == 'S'){
+    if (novoVoo.ehRegular == 'n' || novoVoo.ehRegular == 'N'){
         lerDiaSemana (&novoVoo);
     }
     else {
-        novoVoo.ehRegular = 'N';
+        novoVoo.ehRegular = 'S';
         novoVoo.diaSemana = 0;
     }
     printf ("Digite a quantidade de poltronas disponíveis: ");

@@ -1,14 +1,14 @@
-#include "rota.h"
-
+#include "menus.h"
 
 int main(void){
     setlocale (LC_ALL, "Portuguese");
 
-    incluirVoo ();
     FILE *arquivoVoos = fopen ("voos.dat", "r");
-    unsigned int quantidadeVoos = obterCodigoVooAnterior (arquivoVoos);
+    quantidadeVoos = obterCodigoVooAnterior (arquivoVoos);
     fclose (arquivoVoos);
-    Voo *vetorVoos = criarVetorVoos (quantidadeVoos);
+    vetorVoos = criarVetorVoos (quantidadeVoos);
+
+    menu ();
 
     free (vetorVoos);
     return EXIT_SUCCESS;
