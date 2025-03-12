@@ -128,6 +128,16 @@ void visualizarVoos (){
 }
 
 void realizarVenda (){
+    int dia, mes, hora, minuto;
+    do{
+        printf ("Digite o horário do voo (hh mm): ");
+        scanf ("%d", &hora);
+        scanf ("%d", &minuto);
+        if (hora < 0 || hora > 23 || minuto < 0 || minuto > 59){
+            printf ("Horário inválido, tente novamente.\n");
+        }
+    } while (hora < 0 || hora > 23 || minuto < 0 || minuto > 59);
+    // Escolher destino voo, data (validar) e mostrar somente os para aquele destino
     char opcaoVisualizar;
     printf ("Deseja visualizar os voos disponíveis? (s/n): ");
     scanf (" %c", &opcaoVisualizar); 

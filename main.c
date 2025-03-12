@@ -1,5 +1,8 @@
 #include "menus.h"
 
+//unsigned int quantidadeVoos;
+// Voo *vetorVoos;
+
 int main(void){
     setlocale (LC_ALL, "Portuguese");
 
