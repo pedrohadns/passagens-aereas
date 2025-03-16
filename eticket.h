@@ -7,6 +7,6 @@
 #include "rota.h"
 #include "pagamento.h"
 
-int gerarETicketCompleto(const Passageiro *p, const Voo *voo, int dia, int mes, int ano);
+int gerarEticketCompleto(const Passageiro *p, const Voo *voo, int dia, int mes, int ano);
 
 #endif
