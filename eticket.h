@@ -1,9 +1,12 @@
 #ifndef ETICKET_H
 #define ETICKET_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "rota.h"
 #include "pagamento.h"
 
-void gerarETicketMinimalista(Passageiro p, Voo voo, int dia, int mes, int ano);
+int gerarETicketCompleto(const Passageiro *p, const Voo *voo, int dia, int mes, int ano);
 
 #endif
