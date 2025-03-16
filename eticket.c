@@ -24,7 +24,7 @@ char* gerarPortao() {
     return portao;
 }
 
-void gerarETicketMinimalista(Passageiro p, Voo voo, int dia, int mes, int ano) {
+void gerarEticketCompleto(Passageiro p, Voo voo, int dia, int mes, int ano) {
     criarDiretorioETickets();
     
     int id = gerarIDUnico();
@@ -35,13 +35,13 @@ void gerarETicketMinimalista(Passageiro p, Voo voo, int dia, int mes, int ano) {
     FILE *file = fopen(nomeArquivo, "w");
     if(file) {
         fprintf(file, "Data: %02d/%02d/%04d\n", dia, mes, ano);
-        fprintf(file, "Horário: %02d:%02d\n", voo.horaVoo, voo.minutoVoo);
+        fprintf(file, "HorÃ¡rio: %02d:%02d\n", voo.horaVoo, voo.minutoVoo);
         fprintf(file, "Origem: %s\n", voo.origem.cidade);
         fprintf(file, "Destino: %s\n", voo.destino.cidade);
         fprintf(file, "Passageiro: %s\n", p.nome);
-        fprintf(file, "Número E-Ticket: %d\n", id);
-        fprintf(file, "Código Voo: %d\n", voo.codigoRota);
-        fprintf(file, "Portão: %s\n", gerarPortao());
+        fprintf(file, "NÃºmero E-Ticket: %d\n", id);
+        fprintf(file, "CÃ³digo Voo: %d\n", voo.codigoRota);
+        fprintf(file, "PortÃ£o: %s\n", gerarPortao());
         fclose(file);
     }
 }
