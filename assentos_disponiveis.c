@@ -9,7 +9,7 @@ void obter_nome_arquivo(int id, char *nomeArquivo, int dia, int mes, int ano) {
     snprintf(nomeArquivo, 50, "dados-assentos/%02d-%02d-%04d_voo_%d.dat", dia, mes, ano, id);
 }
 
-// Carrega os assentos do arquivo do ID ou cria um novo se n„o existir
+// Carrega os assentos do arquivo do ID ou cria um novo se n√£o existir
 void carregar_assentos(Matriz *m, int id, int dia, int mes, int ano) {
     char nomeArquivo[50];
     obter_nome_arquivo(id, nomeArquivo, dia, mes, ano);
@@ -27,7 +27,7 @@ void carregar_assentos(Matriz *m, int id, int dia, int mes, int ano) {
         }
         fclose(file);
     } else {
-        // Criar um novo voo com todos os assentos disponÌveis
+        // Criar um novo voo com todos os assentos dispon√≠veis
         file = fopen(nomeArquivo, "w");
         for (int i = 0; i < fileiras; i++) {
             for (int j = 0; j < COLUNAS; j++) {
@@ -40,7 +40,7 @@ void carregar_assentos(Matriz *m, int id, int dia, int mes, int ano) {
     }
 }
 
-// Exibe os assentos disponÌveis do ID
+// Exibe os assentos dispon√≠veis do ID
 void exibir_assentos_disponiveis(Matriz *m) {
     printf("\nAssentos:\n");
     for (int i = 0; i < fileiras; i++) {
@@ -50,13 +50,13 @@ void exibir_assentos_disponiveis(Matriz *m) {
             } else {
                 printf(COR_VERMELHO "[%3s] " RESET, m->n_assentos[i][j].assento);
             }
-            if (j == 2) printf("   "); // EspaÁo entre grupos de poltronas para o corredor
+            if (j == 2) printf("   "); // Espa√ßo entre grupos de poltronas para o corredor
         }
         printf("\n");
     }
 }
 
-// Reserva um assento em um ID especÌfico
+// Reserva um assento em um ID espec√≠fico
 void reservar_assento(Matriz *m, int id, int dia, int mes, int ano) {
     char escolha[4];
     exibir_assentos_disponiveis(m);
@@ -90,14 +90,14 @@ void reservar_assento(Matriz *m, int id, int dia, int mes, int ano) {
                     printf("O assento %s foi reservado com sucesso no voo %d!\n", escolha, id);
                     return;
                 } else {
-                    printf("O assento %s j· est· ocupado no voo %d!\n", escolha, id);
+                    printf("O assento %s j√° est√° ocupado no voo %d!\n", escolha, id);
                     reservar_assento (m, id, dia, mes, ano);
                     return;
                 }
             }
         }
     }
-    printf("Assento inv·lido! Tente novamente.\n");
+    printf("Assento inv√°lido! Tente novamente.\n");
     reservar_assento(m, id, dia, mes, ano);
 }
 
@@ -107,7 +107,7 @@ int solicitar_id_voo() {
         printf("Digite o ID do voo (0 a %d): ", quantidadeVoos);
         scanf("%d", &id);
         if (id < 0 || id > quantidadeVoos) {
-            printf("ID inv·lido! Escolha um ID entre 0 e %d.\n", quantidadeVoos);
+            printf("ID inv√°lido! Escolha um ID entre 0 e %d.\n", quantidadeVoos);
         }
     } while (id < 0 || id > quantidadeVoos);
     return id;

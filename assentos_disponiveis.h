@@ -1,3 +1,5 @@
+#ifndef ASSENTOS_H
+#define ASSENTOS_H 
 #include "rota.h"
 #include <ctype.h>
 
@@ -23,3 +25,4 @@ void exibir_assentos_disponiveis(Matriz *m);
 void reservar_assento(Matriz *m, int id, int dia, int mes, int ano);
 int solicitar_id_voo();
 int numeroAssentosDisponiveis(Matriz *m);
+#endif

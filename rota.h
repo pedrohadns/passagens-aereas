@@ -1,3 +1,5 @@
+#ifndef ROTA_H
+#define ROTA_H
 #include <stdlib.h>
 #include <stdio.h>
 #include <locale.h>
@@ -22,10 +24,8 @@ typedef struct{
     double distancia;
 } Voo;
 
-#ifndef ROTA_H
 extern unsigned int quantidadeVoos; // A quantidade de voos pode ser acessada a partir de qualquer função
 extern Voo *vetorVoos; // Os vetores que armazenam os dados dos arquivos podem ser acessados a partir de qualquer função
-#endif
 
 void leString (char *string, int tamanho);
 unsigned int obterCodigoVooAnterior (FILE *arquivo);
@@ -37,3 +37,4 @@ void lerHorario (Voo *voo);
 void lerDiaSemana (Voo *voo);
 void incluirVoo ();
 Voo *criarVetorVoos (unsigned int quantidadeVoos);
+#endif
