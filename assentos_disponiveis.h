@@ -9,6 +9,7 @@
 #define FILEIRAS 67
 #define COLUNAS 6
 extern int fileiras;
+extern char escolha_assento[4];
 
 typedef struct {
     char assento[4];  // Nome do assento (ex: "10A")
@@ -23,6 +24,7 @@ void obter_nome_arquivo(int id, char *nomeArquivo, int dia, int mes, int ano);
 void carregar_assentos(Matriz *m, int id, int dia, int mes, int ano);
 void exibir_assentos_disponiveis(Matriz *m);
 void reservar_assento(Matriz *m, int id, int dia, int mes, int ano);
+void cancelar_reserva_assento(Matriz *m, int id, int dia, int mes, int ano, const char *assento);
 int solicitar_id_voo();
 int numeroAssentosDisponiveis(Matriz *m);
 #endif

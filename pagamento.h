@@ -36,7 +36,7 @@ double calcularFatorPER(int dias_ate_voo);
 double calcularFatorRET(int dias_retorno);
 double calcularFatorPROC(double ocupacao_percentual);
 double calcularPrecoVoo(Voo voo, int dia_voo, int mes_voo, int ano_voo, int dias_retorno);
-void realizarPagamento(Passageiro passageiro, Pagamento *pagamento, Voo voo, int dia_voo, int mes_voo, int ano_voo);
+int realizarPagamento(Passageiro passageiro, Pagamento *pagamento, Voo voo, int dia_voo, int mes_voo, int ano_voo);
 void registrarPagamentoArquivo(Pagamento pagamento, Passageiro passageiro, Voo voo, int dia, int mes, int ano);
 void cadastrarPassageiro(Passageiro *passageiro);
 #endif // PAGAMENTO_H

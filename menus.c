@@ -1,26 +1,12 @@
 #include "menus.h"
 
 void menu (){
-    int ehFuncValido = 0;
-    do {
-        printf ("Fa√ßa login (nome): ");
-        leString (funcionario_logado.nome, 100);
-        printf ("Digite seu CPF (sem pontos): ");
-        leString (funcionario_logado.matricula, 20);
-        printf ("Digite o cargo: ");
-        leString (funcionario_logado.cargo, 10);
-        ehFuncValido = validarFuncionario (funcionario_logado.matricula, funcionario_logado.nome, funcionario_logado.cargo);
-        if (ehFuncValido != 1){
-            printf ("Login incorreto, tente novamente.\n");
-        }
-    } while (ehFuncValido != 1);
-    printf ("Bem-vindo, %s\n", funcionario_logado.nome);
     int opcao;
     do{
-        printf ("\n[1] Configura√ß√µes\n");
+        printf ("\n[1] ConfiguraÁıes\n");
         printf ("[2] Vendas\n");
         printf ("[3] Sair\n");
-        printf ("Digite a op√ß√£o desejada: ");
+        printf ("Digite a opÁ„o desejada: ");
         scanf ("%d", &opcao);
         getchar ();
         switch (opcao){
@@ -33,7 +19,7 @@ void menu (){
             case 3:
                 break;
             default:
-                printf ("Op√ß√£o inv√°lida!\n");
+                printf ("OpÁ„o inv·lida!\n");
                 break;
         }
     } while (opcao != 3);
@@ -44,13 +30,14 @@ void configuracoes (){
     do{
         printf ("\n[4] Cadastrar voo\n");
         printf ("[5] Cadastrar passageiro\n");
-        printf ("[6] Alterar dados passageiro\n");
-        printf ("[7] Cadastrar funcion√°rio\n");
-        printf ("[8] Alterar dados funcion√°rio\n");
-        printf ("[9] Voltar\n");
-        printf ("Digite a op√ß√£o desejada: ");
+        // printf ("[6] Alterar dados passageiro\n");
+        // printf ("[7] Cadastrar funcion·rio\n");
+        // printf ("[8] Alterar dados funcion·rio\n");
+        printf ("[6] Voltar\n");
+        printf ("Digite a opÁ„o desejada: ");
         scanf ("%d", &opcao);
         getchar ();
+        Passageiro novo_passageiro;
         switch (opcao){
             case 4:
                 incluirVoo ();
@@ -60,54 +47,48 @@ void configuracoes (){
                 vetorVoos = criarVetorVoos (quantidadeVoos);
                 break;
             case 5:
-                //cadastrarPassageiro (passageiros);
+                cadastrarPassageiro (&novo_passageiro);
                 break;
-            case 6:
+            /* case 6:
                 //alterarPassageiro ();
                 break;
             case 7:
-                if (strcmp (funcionario_logado.cargo, "gerente") != 0){
-                    printf ("Voc√™ n√£o tem permiss√£o para fazer isso, retornando.\n");
-                    break;
-                }
+                // Verificar se È gerente
                 //incluirFuncionario ();
                 break;
             case 8:
-                if (strcmp (funcionario_logado.cargo, "gerente") != 0){
-                    printf ("Voc√™ n√£o tem permiss√£o para fazer isso, retornando.\n");
-                    break;
-                }
+                // Verificar se È gerente
                 //alterarFuncionario ();
-                break;
-            case 9:
+                break; */
+            case 6:
                 break;
             default:
-                printf ("Op√ß√£o inv√°lida!\n");
+                printf ("OpÁ„o inv·lida!\n");
                 break;
         }
-    } while (opcao != 9);
+    } while (opcao != 6);
 }
 
 void vendas (){
     int opcao;
     do{
-        printf ("\n[10] Realizar venda\n");
-        printf ("[11] Voltar\n");
-        printf ("Digite a op√ß√£o desejada: ");
+        printf ("\n[7] Realizar venda\n");
+        printf ("[8] Voltar\n");
+        printf ("Digite a opÁ„o desejada: ");
         scanf ("%d", &opcao);
         getchar ();
         switch (opcao){
-            case 10:
+            case 7:
                 realizarVenda ();
                 // Parte de pagamentos e ticket;
                 break;
-            case 11:
+            case 8:
                 break;
             default:
-                printf ("Op√ß√£o inv√°lida!\n");
+                printf ("OpÁ„o inv·lida!\n");
                 break;
         }
-    } while (opcao != 11);
+    } while (opcao != 8);
 }
 
 int calculaDiaSemana (int dia, int mes, int ano){
@@ -157,7 +138,7 @@ void visualizarVoos (char *Origem, char *Destino, int dia, int mes, int ano, int
             Matriz m;
             carregar_assentos (&m, vetorVoos[i].codigoRota, dia, mes, ano);
             int numAssentosDisponiveis = numeroAssentosDisponiveis (&m);
-            if (numAssentosDisponiveis == 0){ // Se n√£o houver assentos dispon√≠veis, n√£o exibe o voo
+            if (numAssentosDisponiveis == 0){ // Se n„o houver assentos disponÌveis, n„o exibe o voo
                 continue;
             }
             if (vetorVoos[i].diaSemana != calculaDiaSemana (dia, mes, ano) && (vetorVoos[i].ehRegular == 'n' || vetorVoos[i].ehRegular == 'N')){
@@ -165,8 +146,8 @@ void visualizarVoos (char *Origem, char *Destino, int dia, int mes, int ano, int
             }
             *flagVoosDisponiveis = 1;
             printf ("Rota: %s\n", vetorVoos[i].nomeRota);
-            printf ("C√≥digo do voo: %d\n", vetorVoos[i].codigoRota);
-            printf ("Hor√°rio: %02d:%02d\n", vetorVoos[i].horaVoo, vetorVoos[i].minutoVoo);
+            printf ("CÛdigo do voo: %d\n", vetorVoos[i].codigoRota);
+            printf ("Hor·rio: %02d:%02d\n", vetorVoos[i].horaVoo, vetorVoos[i].minutoVoo);
             if (vetorVoos[i].ehRegular == 'n' || vetorVoos[i].ehRegular == 'N'){
                 printf ("Dia da Semana: ");
                 switch (vetorVoos[i].diaSemana){
@@ -177,7 +158,7 @@ void visualizarVoos (char *Origem, char *Destino, int dia, int mes, int ano, int
                         printf ("Segunda-feira\n");
                         break;
                     case 3:
-                        printf ("Ter√ßa-feira\n");
+                        printf ("TerÁa-feira\n");
                         break;
                     case 4:
                         printf ("Quarta-feira\n");
@@ -189,20 +170,20 @@ void visualizarVoos (char *Origem, char *Destino, int dia, int mes, int ano, int
                         printf ("Sexta-feira\n");
                         break;
                     case 7:
-                        printf ("S√°bado\n");
+                        printf ("S·bado\n");
                         break;
                     default:
-                        printf ("Dia da semana inv√°lido\n");
+                        printf ("Dia da semana inv·lido\n");
                         break;
                 }
             }
-            printf ("Assentos dispon√≠veis: %d\n", numAssentosDisponiveis);
-            printf ("Dist√¢ncia: %.2lf milhas\n", vetorVoos[i].distancia);
+            printf ("Assentos disponÌveis: %d\n", numAssentosDisponiveis);
+            printf ("Dist‚ncia: %.2lf milhas\n", vetorVoos[i].distancia);
             printf ("\n");
         }
     }
     if (*flagVoosDisponiveis == 0){
-        printf ("N√£o h√° voos dispon√≠veis para a rota %s - %s\n", Origem, Destino);
+        printf ("N„o h· voos disponÌveis para a rota %s - %s\n", Origem, Destino);
     }
 }
 
@@ -225,10 +206,10 @@ void realizarVenda (){
     if (flagVoosDisponiveis == 0){
         return;
     }
-    printf ("Digite o c√≥digo do voo desejado: ");
+    printf ("Digite o cÛdigo do voo desejado: ");
     int codigoVoo;
     scanf (" %d", &codigoVoo);
-    printf ("Exibindo assentos dispon√≠veis...\n");
+    printf ("Exibindo assentos disponÌveis...\n");
     Matriz m;
     carregar_assentos (&m, codigoVoo, dia, mes, ano);
     reservar_assento (&m, codigoVoo, dia, mes, ano);
@@ -236,7 +217,7 @@ void realizarVenda (){
     Passageiro passageiro_atual;
     Pagamento pagamento_atual;
     cadastrarPassageiro (&passageiro_atual);
-    realizarPagamento (passageiro_atual, &pagamento_atual, vetorVoos[codigoVoo], dia, mes, ano);
+    int sucessoPagamento = realizarPagamento (passageiro_atual, &pagamento_atual, vetorVoos[codigoVoo], dia, mes, ano);
 
-    gerarEticketCompleto (passageiro_atual, pagamento_atual, vetorVoos[codigoVoo], dia, mes, ano);
+    if (!sucessoPagamento){gerarEticketCompleto (passageiro_atual, pagamento_atual, vetorVoos[codigoVoo], dia, mes, ano);}
 }

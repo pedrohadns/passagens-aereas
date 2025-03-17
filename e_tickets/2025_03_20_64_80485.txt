@@ -1,8 +1,0 @@
-Data: 20/03/2025
-Horário: 15:00
-Origem: Sao Paulo
-Destino: Vitoria
-Passageiro: Pedro Henrique Alves do Nascimento
-Número E-Ticket: 80485
-Código Voo: 64
-Portão: U077

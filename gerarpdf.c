@@ -10,7 +10,7 @@ void gerar_arquivo_latex(Voo voo, int dia, int mes, int ano, Passageiro passagei
         exit(1);
     }
 
-    // Gerando o conte√∫do LaTeX do recibo de passagem a√©rea
+    // Gerando o conte˙do LaTeX do recibo de passagem aÈrea
     fprintf(arquivo, "\\documentclass[10pt]{article}\n");
     fprintf(arquivo, "\\usepackage[paperwidth=8cm, paperheight=20cm, top=5mm, bottom=5mm, left=5mm, right=5mm]{geometry}\n");
     fprintf(arquivo, "\\usepackage{graphicx}\n");
@@ -19,19 +19,20 @@ void gerar_arquivo_latex(Voo voo, int dia, int mes, int ano, Passageiro passagei
     fprintf(arquivo, "\\usepackage{dashrule}\n");
     fprintf(arquivo, "\\usepackage{inconsolata}\n");
     fprintf(arquivo, "\\usepackage{parskip}\n");
+    fprintf(arquivo, "\\usepackage[latin1]{inputenc}\n");
     fprintf(arquivo, "\\pagecolor[rgb]{0.98, 0.95, 0.82}\n");
     fprintf(arquivo, "\\pagestyle{empty}\n");
 
     fprintf(arquivo, "\\begin{document}\n");
     fprintf(arquivo, "\\ttfamily\n");
     fprintf(arquivo, "\\begin{center}\n");
-    fprintf(arquivo, "    \\textbf{\\Large RECIBO DE VENDA DE PASSAGEM A√âREA} \\\\[-2pt]\n");
+    fprintf(arquivo, "    \\textbf{\\Large RECIBO DE VENDA DE PASSAGEM A…REA} \\\\[-2pt]\n");
     fprintf(arquivo, "    \\hdashrule[0.5ex]{45mm}{1pt}{1mm}\n");
     fprintf(arquivo, "\\end{center}\n");
 
-    fprintf(arquivo, "\\textbf{Companhia A√©rea:} Cerberus Airlines\\\\\n");
+    fprintf(arquivo, "\\textbf{Companhia AÈrea:} Cerberus Airlines\\\\\n");
     fprintf(arquivo, "\\textbf{CNPJ:} 64.008.947/0001-21\\\\[1ex]\n");
-    fprintf(arquivo, "\\textbf{Endere√ßo:} BR 101, km 60, Bairro Litor√¢neo, S√£o Mateus/ES\\\\[-2pt]\n");
+    fprintf(arquivo, "\\textbf{EndereÁo:} BR 101, km 60, Bairro Litor‚neo, S„o Mateus/ES\\\\[-2pt]\n");
     fprintf(arquivo, "\\textbf{Telefone:} (27) 3752-4666 \\\\\n");
 
     fprintf(arquivo, "\\begin{center}\n");
@@ -45,12 +46,13 @@ void gerar_arquivo_latex(Voo voo, int dia, int mes, int ano, Passageiro passagei
 
     fprintf(arquivo, "\\textbf{Data da Compra:} %02d/%02d/%04d \\hfill \\textbf{Hora:} %02d:%02d \\\\[2ex]\n", tm_info->tm_mday, tm_info->tm_mon + 1, tm_info->tm_year + 1900, tm_info->tm_hour, tm_info->tm_min);
     fprintf(arquivo, "\\textbf{Voo:} %d \\hfill \\\\\n", voo.codigoRota);
-    fprintf(arquivo, "\\textbf{N√∫mero do Bilhete:} %d \\\\[2ex]\n", codigoEticket);
+    fprintf(arquivo, "\\textbf{Assento:} %s \\\\\n", escolha_assento);
+    fprintf(arquivo, "\\textbf{N˙mero do Bilhete:} %d \\\\[2ex]\n", codigoEticket);
     fprintf(arquivo, "\\textbf{Origem:} %s (%s) \\hfill \\\\\n", voo.origem.cidade, voo.origem.codigoAeroporto);
     fprintf(arquivo, "\\textbf{Destino:} %s (%s) \\\\[2ex]\n", voo.destino.cidade, voo.destino.codigoAeroporto);
     fprintf(arquivo, "\\textbf{Data do Voo:} %02d/%02d/%04d\\hfill \\\\\n", dia, mes, ano);
     fprintf(arquivo, "\\textbf{Hora de Partida:} %02d:%02d \\\\ \n", voo.horaVoo, voo.minutoVoo);
-    fprintf(arquivo, "\\textbf{Port√£o de Embarque:} %s \\\\[2ex]\n", codigoPortao);
+    fprintf(arquivo, "\\textbf{Port„o de Embarque:} %s \\\\[2ex]\n", codigoPortao);
 
     fprintf(arquivo, "\\begin{center}\n");
     fprintf(arquivo, "    \\begin{tabular}{p{4cm} c}\n");
@@ -66,7 +68,7 @@ void gerar_arquivo_latex(Voo voo, int dia, int mes, int ano, Passageiro passagei
     if (strcmp (pagamento_atual.metodoPagamento, "Dinheiro") == 0){
         fprintf(arquivo, "\\textbf{Forma de Pagamento:} %s \\\\\n", pagamento_atual.metodoPagamento);
     }
-    else {fprintf(arquivo, "\\textbf{Forma de Pagamento:} Cart√£o de %s \\\\\n", pagamento_atual.metodoPagamento);}
+    else {fprintf(arquivo, "\\textbf{Forma de Pagamento:} Cart„o de %s \\\\\n", pagamento_atual.metodoPagamento);}
 
     fprintf(arquivo, "\\begin{center}\n");
     fprintf(arquivo, "    \\hdashrule[0.5ex]{45mm}{1pt}{1mm}\n");
@@ -75,7 +77,7 @@ void gerar_arquivo_latex(Voo voo, int dia, int mes, int ano, Passageiro passagei
     fprintf(arquivo, "\\begin{center}\n");
     fprintf(arquivo, "    \\textbf{Obrigado pela sua compra!} \\\\\n");
     fprintf(arquivo, "    \\textbf{Desejamos uma boa viagem!} \\\\[2pt]\n");
-    fprintf(arquivo, "    Mais informa√ß√µes no site \\\\[-2pt]\n");
+    fprintf(arquivo, "    Mais informaÁıes no site \\\\[-2pt]\n");
     fprintf(arquivo, "    www.cerberusairlines.com \\\\\n");
     fprintf(arquivo, "\\end{center}\n");
 
@@ -89,6 +91,11 @@ void gerar_arquivo_latex(Voo voo, int dia, int mes, int ano, Passageiro passagei
 }
 
 void compilar_latex(const char *pasta, const char *nome_arquivo) {
+    int status_instalado = system("cmd /c where pdflatex > nul 2>&1");
+    if (status_instalado != 0){ // pdflatex n„o est· instalado
+        printf ("pdflatex n„o est· instalado.\n");
+        return;
+    }
     char comando[512];
     snprintf(comando, sizeof(comando), "cmd /c \"cd /d %s && pdflatex %s > nul 2>&1\"", pasta, nome_arquivo);
     
@@ -118,9 +125,9 @@ void executarLaTeX (Voo voo, int dia, int mes, int ano, Passageiro passageiro_at
     sprintf (arquivo_tex, "%s.tex", nomeArquivoBase);
     sprintf (arquivo_pdf, "%s.pdf", nomeArquivoBase);
 
-    // Criar diret√≥rio
+    // Criar diretÛrio
     if (_mkdir(pasta) == -1) {
-        perror("Erro ao criar o diret√≥rio");
+        perror("Erro ao criar o diretÛrio");
         exit(1);
     }
 
@@ -130,7 +137,7 @@ void executarLaTeX (Voo voo, int dia, int mes, int ano, Passageiro passageiro_at
     // Compilar o LaTeX
     compilar_latex(pasta, arquivo_tex);
 
-    // Limpar o diret√≥rio tempor√°rio
+    // Limpar o diretÛrio tempor·rio
     limpar_diretorio(pasta, arquivo_pdf);
 
     printf("PDF gerado com sucesso!\n");
