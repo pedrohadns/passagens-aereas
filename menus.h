@@ -1,4 +1,6 @@
-#include "assentos_disponiveis.h"
+#include "eticket.h"
+
+Funcionario funcionario_logado;
 
 void menu ();
 void configuracoes ();
