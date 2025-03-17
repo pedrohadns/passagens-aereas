@@ -94,7 +94,7 @@ void compilar_latex(const char *pasta, const char *nome_arquivo) {
     int status_instalado = system("cmd /c where pdflatex > nul 2>&1");
     if (status_instalado != 0){ // pdflatex não está instalado
         printf ("pdflatex não está instalado.\n");
-        return;
+        exit(1);
     }
     char comando[512];
     snprintf(comando, sizeof(comando), "cmd /c \"cd /d %s && pdflatex %s > nul 2>&1\"", pasta, nome_arquivo);
