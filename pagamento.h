@@ -1,5 +1,6 @@
 #include "dias_do_ano.h"
 #include "assentos_disponiveis.h"
+#include "funcionarios.h"
 
 #ifndef PAGAMENTO_H
 #define PAGAMENTO_H
@@ -21,13 +22,6 @@ typedef struct {
     char metodoPagamento[20];
 } Pagamento;
 
-// Estrutura para armazenar o funcionário
-typedef struct {
-    char nome[50];
-    char cargo[10]; // "gerente" ou "vendedor"
-    char matricula[12]; // 11 dígitos + terminador de string
-} Funcionario;
-
 // Declaração das funções
 int validarFuncionario(char *matricula, char *nome, char *cargo);
 int calcularDiasAteVoo(int dia_voo, int mes_voo, int ano_voo);
@@ -36,7 +30,7 @@ double calcularFatorPER(int dias_ate_voo);
 double calcularFatorRET(int dias_retorno);
 double calcularFatorPROC(double ocupacao_percentual);
 double calcularPrecoVoo(Voo voo, int dia_voo, int mes_voo, int ano_voo, int dias_retorno);
-void realizarPagamento(Passageiro passageiro, Pagamento *pagamento, Voo voo, int dia_voo, int mes_voo, int ano_voo);
+int realizarPagamento(Passageiro passageiro, Pagamento *pagamento, Voo voo, int dia_voo, int mes_voo, int ano_voo);
 void registrarPagamentoArquivo(Pagamento pagamento, Passageiro passageiro, Voo voo, int dia, int mes, int ano);
 void cadastrarPassageiro(Passageiro *passageiro);
 #endif // PAGAMENTO_H

@@ -24,8 +24,8 @@ typedef struct{
     double distancia;
 } Voo;
 
-extern unsigned int quantidadeVoos; // A quantidade de voos pode ser acessada a partir de qualquer funÃ§Ã£o
-extern Voo *vetorVoos; // Os vetores que armazenam os dados dos arquivos podem ser acessados a partir de qualquer funÃ§Ã£o
+extern unsigned int quantidadeVoos; // A quantidade de voos pode ser acessada a partir de qualquer função
+extern Voo *vetorVoos; // Os vetores que armazenam os dados dos arquivos podem ser acessados a partir de qualquer função
 
 void leString (char *string, int tamanho);
 unsigned int obterCodigoVooAnterior (FILE *arquivo);

@@ -1,0 +1,11 @@
+Data: 21/03/2025
+Horario: 08:35
+Origem: Vitoria
+Destino: Fortaleza
+Passageiro: Pedro Henrique Alves do Nascimento
+Assento: 12A
+Numero E-Ticket: 49930
+Codigo Voo: 68
+Portao: M025
+Total: R$ 1100,78
+Forma de Pagamento: Dinheiro

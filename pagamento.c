@@ -1,15 +1,10 @@
 #include "pagamento.h"
 
-Funcionario funcionarios[] = {
-    {"SILVIO", "VENDEDOR", "12345678901"},
-    {"PEDRO", "GERENTE", "98765432102"},
-    {"MAURICIO", "VENDEDOR", "19283746503"}
-};
-
-#define NUM_FUNCIONARIOS (sizeof(funcionarios) / sizeof(funcionarios[0]))
+Funcionario *funcionarios_cadastrados;
+int quantidadeFuncionarios;
 
 int validarFuncionario(char *matricula, char *nome, char *cargo) {
-    for (int i = 0; i < NUM_FUNCIONARIOS; i++) {
+    for (int i = 0; i < quantidadeFuncionarios; i++) {
         for (int j = 0; j < strlen (nome); j++){
             nome[j] = toupper (nome[j]);
         }
@@ -17,9 +12,9 @@ int validarFuncionario(char *matricula, char *nome, char *cargo) {
             cargo[j] = toupper (cargo[j]);
         }
 
-        if (strcmp(funcionarios[i].matricula, matricula) == 0 &&
-            strcmp(funcionarios[i].nome, nome) == 0 &&
-            strcmp(funcionarios[i].cargo, cargo) == 0) {
+        if (strcmp(funcionarios_cadastrados[i].matricula, matricula) == 0 &&
+            strcmp(funcionarios_cadastrados[i].nome, nome) == 0 &&
+            strcmp(funcionarios_cadastrados[i].cargo, cargo) == 0) {
             return 1;
         }
     }
@@ -98,39 +93,67 @@ double calcularPrecoVoo(Voo voo, int dia_voo, int mes_voo, int ano_voo, int dias
            calcularFatorPROC(ocupacao);
 }
 
-void realizarPagamento(Passageiro passageiro, Pagamento *pagamento, Voo voo, int dia_voo, int mes_voo, int ano_voo) {
+int realizarPagamento(Passageiro passageiro, Pagamento *pagamento, Voo voo, int dia_voo, int mes_voo, int ano_voo) {
     int dias_retorno = 0;
     int eh_ida_volta;
-    printf("A viagem inclui retorno? (1-Sim/0-NÃ£o): ");
+    printf("A viagem inclui retorno? (1-Sim/0-Não): ");
     scanf("%d", &eh_ida_volta);
     
     if(eh_ida_volta) {
-        printf("Quantos dias apÃ³s a ida serÃ¡ o retorno? ");
-        scanf("%d", &dias_retorno);
+        int diaRetorno, mesRetorno, anoRetorno;
+        printf ("Digite a data de retorno (dd mm aaaa): ");
+        scanf ("%d", &diaRetorno);
+        scanf ("%d", &mesRetorno);
+        scanf ("%d", &anoRetorno);
+        struct tm data1 = {0}, data2 = {0};
+    
+        // Configurar a primeira data
+        data1.tm_mday = dia_voo;
+        data1.tm_mon = mes_voo - 1;
+        data1.tm_year = ano_voo - 1900;
+
+        // Configurar a segunda data
+        data2.tm_mday = diaRetorno;
+        data2.tm_mon = mesRetorno - 1;
+        data2.tm_year = anoRetorno - 1900;
+
+        // Converter para time_t
+        time_t tempo1 = mktime(&data1);
+        time_t tempo2 = mktime(&data2);
+
+        if (tempo1 == -1 || tempo2 == -1) {
+            printf("Erro ao converter datas.\n");
+            Matriz m;
+            carregar_assentos (&m, voo.codigoRota, dia_voo, mes_voo, ano_voo);
+            cancelar_reserva_assento (&m, voo.codigoRota, dia_voo, mes_voo, ano_voo, escolha_assento);
+            return 1;
+        }
+
+        dias_retorno = (int)difftime(tempo2, tempo1) / (60 * 60 * 24);
     }
 
     double precoTotal = calcularPrecoVoo(voo, dia_voo, mes_voo, ano_voo, dias_retorno);
     printf("\n=== RESUMO DO PAGAMENTO ===\n");
-    printf("DistÃ¢ncia: %.2f milhas\n", voo.distancia);
+    printf("Distância: %.2f milhas\n", voo.distancia);
     printf("Data do voo: %02d/%02d/%04d\n", dia_voo, mes_voo, ano_voo);
-    printf("PreÃ§o total: R$ %.2f\n\n", precoTotal);
+    printf("Preço total: R$ %.2f\n\n", precoTotal);
 
     char metodo[20];
     int tentativas = 3;
     
     while(tentativas > 0) {
-        printf("MÃ©todos disponÃ­veis:\n");
-        printf("1. Dinheiro\n2. CartÃ£o de crÃ©dito\n3. CartÃ£o de dÃ©bito\n");
-        printf("Escolha o mÃ©todo (digite o nÃºmero): ");
+        printf("Métodos disponíveis:\n");
+        printf("1. Dinheiro\n2. Cartão de crédito\n3. Cartão de débito\n");
+        printf("Escolha o método (digite o número): ");
         scanf(" %19[^\n]s", metodo);
 
         if(strcmp(metodo, "1") == 0) {
             char matricula[12], nome[50], cargo[10];
-            printf("\n=== ValidaÃ§Ã£o do FuncionÃ¡rio ===\n");
-            printf("MatrÃ­cula: ");
-            scanf(" %11[^\n]s", matricula);
+            printf("\n=== Validação do Funcionário ===\n");
             printf("Nome: ");
             scanf(" %49[^\n]s", nome);
+            printf("Matrícula: ");
+            scanf(" %11[^\n]s", matricula);
             printf("Cargo: ");
             scanf(" %9[^\n]s", cargo);
 
@@ -138,34 +161,39 @@ void realizarPagamento(Passageiro passageiro, Pagamento *pagamento, Voo voo, int
                 strcpy(pagamento->metodoPagamento, "Dinheiro");
                 break;
             } else {
-                printf("FuncionÃ¡rio nÃ£o autorizado! Tentativas restantes: %d\n", --tentativas);
+                printf("Funcionário não autorizado! Tentativas restantes: %d\n", --tentativas);
             }
         }
         else if(strcmp(metodo, "2") == 0) {
-            strcpy(pagamento->metodoPagamento, "CrÃ©dito");
+            strcpy(pagamento->metodoPagamento, "Crédito");
             break;
         }
         else if(strcmp(metodo, "3") == 0) {
-            strcpy(pagamento->metodoPagamento, "DÃ©bito");
+            strcpy(pagamento->metodoPagamento, "Débito");
             break;
         }
         else {
-            printf("OpÃ§Ã£o invÃ¡lida! Tentativas restantes: %d\n", --tentativas);
+            printf("Opção inválida! Tentativas restantes: %d\n", --tentativas);
         }
     }
 
     if(tentativas == 0) {
         printf("Pagamento cancelado por excesso de tentativas!\n");
         strcpy(pagamento->metodoPagamento, "");
-        return;
+
+        Matriz m;
+        carregar_assentos (&m, voo.codigoRota, dia_voo, mes_voo, ano_voo);
+        cancelar_reserva_assento (&m, voo.codigoRota, dia_voo, mes_voo, ano_voo, escolha_assento);
+        return 1;
     }
 
     pagamento->preco = precoTotal;
 
     printf("\n=== PAGAMENTO CONFIRMADO ===\n");
-    printf("MÃ©todo: %s\n", pagamento->metodoPagamento);
+    printf("Método: %s\n", pagamento->metodoPagamento);
     printf("Valor: R$ %.2f\n", pagamento->preco);
     registrarPagamentoArquivo (*pagamento, passageiro, voo, dia_voo, mes_voo, ano_voo);
+    return 0;
 }
 
 void registrarPagamentoArquivo(Pagamento pagamento, Passageiro passageiro, Voo voo, int dia, int mes, int ano) {
@@ -177,12 +205,12 @@ void registrarPagamentoArquivo(Pagamento pagamento, Passageiro passageiro, Voo v
 
     fprintf(arquivo, "=== Ticket %s ===\n", passageiro.cpf);
     fprintf(arquivo, "Passageiro: %s\n", passageiro.nome);
-    fprintf(arquivo, "Voo: %s ? %s\n", 
+    fprintf(arquivo, "Voo: %s - %s\n", 
            voo.origem.codigoAeroporto, 
            voo.destino.codigoAeroporto);
     fprintf(arquivo, "Data: %02d/%02d/%04d\n", dia, mes, ano);
     fprintf(arquivo, "Valor: R$ %.2f\n", pagamento.preco);
-    fprintf(arquivo, "MÃ©todo: %s\n\n", pagamento.metodoPagamento);
+    fprintf(arquivo, "Metodo: %s\n\n", pagamento.metodoPagamento);
     
     fclose(arquivo);
 }
@@ -192,10 +220,10 @@ void cadastrarPassageiro(Passageiro *passageiro) {
     printf("Nome completo: ");
     scanf(" %[^\n]49s", passageiro->nome);
     
-    printf("CPF (apenas nÃºmeros): ");
+    printf("CPF (apenas números): ");
     scanf(" %11[^\n]s", passageiro->cpf);
     
-    printf("RG (apenas nÃºmeros): ");
+    printf("RG (apenas números): ");
     scanf(" %9[^\n]s", passageiro->rg);
     
     printf("Data de nascimento (DDMMAAAA): ");
@@ -207,6 +235,6 @@ void cadastrarPassageiro(Passageiro *passageiro) {
     printf("E-mail: ");
     scanf(" %49[^\n]s", passageiro->email);
     
-    printf("Bagagem extra? (1-Sim/0-NÃ£o): ");
+    printf("Bagagem extra? (1-Sim/0-Não): ");
     scanf("%d", &passageiro->bagagemExtra);
 }

@@ -14,28 +14,28 @@ int gerarIDUnico() {
     return (int)(time(NULL) % 100000) + (counter++ % 10000);
 }
 
-// Fun√ß√£o para gerar o c√≥digo do port√£o de embarque
+// FunÁ„o para gerar o cÛdigo do port„o de embarque
 void gerar_codigo_portao (const char *nome_voo, int ano, int mes, int dia, char *codigo_portao) {
     unsigned long hash = 5381;
     int c;
 
-    // Calcula o hash do nome do voo (usando a fun√ß√£o djb2)
+    // Calcula o hash do nome do voo (usando a funÁ„o djb2)
     while ((c = *nome_voo++)){
         hash = ((hash << 5) + hash) + c; // hash * 33 + c
     }
 
     // Adiciona os componentes da data ao hash
-    hash = ((hash << 5) + hash) + (ano % 100); // √öltimos dois d√≠gitos do ano
+    hash = ((hash << 5) + hash) + (ano % 100); // ⁄ltimos dois dÌgitos do ano
     hash = ((hash << 5) + hash) + mes;
     hash = ((hash << 5) + hash) + dia;
 
-    // Gera a letra do port√£o (A-Z)
+    // Gera a letra do port„o (A-Z)
     char letra_portao = 'A' + (hash % 26);
 
-    // Gera o n√∫mero do port√£o (000-099)
+    // Gera o n˙mero do port„o (000-099)
     int numero_portao = (hash / 26) % 100;
 
-    // Formata o c√≥digo do port√£o no formato A123
+    // Formata o cÛdigo do port„o no formato A123
     sprintf(codigo_portao, "%c%03d", letra_portao, numero_portao);
 }
 
@@ -51,26 +51,32 @@ void gerarEticketCompleto(Passageiro p, Pagamento pagamento_atual, Voo voo, int 
     if(file) {
         // Escreve no arquivo
         fprintf(file, "Data: %02d/%02d/%04d\n", dia, mes, ano);
-        fprintf(file, "Hor√°rio: %02d:%02d\n", voo.horaVoo, voo.minutoVoo);
+        fprintf(file, "Horario: %02d:%02d\n", voo.horaVoo, voo.minutoVoo);
         fprintf(file, "Origem: %s\n", voo.origem.cidade);
         fprintf(file, "Destino: %s\n", voo.destino.cidade);
         fprintf(file, "Passageiro: %s\n", p.nome);
-        fprintf(file, "N√∫mero E-Ticket: %d\n", id);
-        fprintf(file, "C√≥digo Voo: %d\n", voo.codigoRota);
+        fprintf(file, "Assento: %s\n", escolha_assento);
+        fprintf(file, "Numero E-Ticket: %d\n", id);
+        fprintf(file, "Codigo Voo: %d\n", voo.codigoRota);
         gerar_codigo_portao (voo.nomeRota, dia, mes, ano, codigoPortao);
-        fprintf(file, "Port√£o: %s\n", codigoPortao);
+        fprintf(file, "Portao: %s\n", codigoPortao);
+        fprintf(file, "Total: R$ %.2lf\n", pagamento_atual.preco);
+        fprintf(file, "Forma de Pagamento: %s\n", pagamento_atual.metodoPagamento);
         fclose(file);
-        // Mostra para o usu√°rio
+        // Mostra para o usu·rio
         printf("Data: %02d/%02d/%04d\n", dia, mes, ano);
-        printf("Hor√°rio: %02d:%02d\n", voo.horaVoo, voo.minutoVoo);
+        printf("Hor·rio: %02d:%02d\n", voo.horaVoo, voo.minutoVoo);
         printf("Origem: %s\n", voo.origem.cidade);
         printf("Destino: %s\n", voo.destino.cidade);
         printf("Passageiro: %s\n", p.nome);
-        printf("N√∫mero E-Ticket: %d\n", id);
-        printf("C√≥digo Voo: %d\n", voo.codigoRota);
-        printf("Port√£o: %s\n", codigoPortao);
+        printf("Assento: %s\n", escolha_assento);
+        printf("N˙mero E-Ticket: %d\n", id);
+        printf("CÛdigo Voo: %d\n", voo.codigoRota);
+        printf("Port„o: %s\n", codigoPortao);
+        printf("Total: R$ %.2lf\n", pagamento_atual.preco);
+        printf("Forma de Pagamento: %s\n", pagamento_atual.metodoPagamento);
 
-        printf ("Deseja gerar o pdf? (1-Sim/0-N√£o) ");
+        printf ("Deseja gerar o pdf? (1-Sim/0-N„o) ");
         int opcaopdf;
         scanf ("%d", &opcaopdf);
         if (opcaopdf){

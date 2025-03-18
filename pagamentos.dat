@@ -1,105 +1,21 @@
 === Ticket 15518096720 ===
 Passageiro: Pedro Henrique Alves do Nascimento
-Voo: CGH ? SDU
-Data: 18/03/2025
-Valor: R$ 487,67
-M�todo: Dinheiro
-
-=== Ticket 15518096720 ===
-Passageiro: Pedro Henrique Alves do Nascimento
-Voo: VIX ? GRU
-Data: 20/05/2025
-Valor: R$ 341,85
-M�todo: Cr�dito
-
-=== Ticket 15518096720 ===
-Passageiro: Pedro H. A. do Nascimento
-Voo: VIX ? GRU
-Data: 20/03/2025
-Valor: R$ 756,79
-M�todo: Cr�dito
-
-=== Ticket 15518096720 ===
-Passageiro: Pedro H. A. do Nascimento
-Voo: GRU ? VIX
-Data: 20/03/2025
-Valor: R$ 756,79
-M�todo: Cr�dito
-
-=== Ticket 15518096720 ===
-Passageiro: Pedro Henrique Alves
-Voo: VIX ? GRU
-Data: 20/03/2025
-Valor: R$ 756,79
-Método: Crédito
-
-=== Ticket 15518096720 ===
-Passageiro: Pedro Henrique Alves
-Voo: VIX ? GRU
-Data: 20/03/2025
-Valor: R$ 756,79
-Método: Crédito
-
-=== Ticket 15518096720 ===
-Passageiro: Pedro Henrique
-Voo: VIX ? GRU
-Data: 30/03/2025
-Valor: R$ 564,83
-Método: Crédito
-
-=== Ticket 15518096720 ===
-Passageiro: Pedro Henrique
-Voo: VIX ? GRU
-Data: 20/03/2025
-Valor: R$ 735,16
-Método: Crédito
-
-=== Ticket 15518096720 ===
-Passageiro: Pedro Henrique
-Voo: VIX ? GRU
-Data: 20/03/2025
-Valor: R$ 735,16
-Método: Crédito
-
-=== Ticket 15518096720 ===
-Passageiro: Pedro Henrique
-Voo: VIX ? GRU
-Data: 15/03/2005
-Valor: R$ 1035,18
-Método: Dinheiro
-
-=== Ticket 15518096720 ===
-Passageiro: Pedro Henrique Alves do Nascimento
-Voo: VIX ? GRU
+Voo: VIX - FOR
 Data: 21/03/2025
-Valor: R$ 735,16
-Método: Crédito
+Valor: R$ 1100,78
+Metodo: Dinheiro
 
-=== Ticket 15518096720 ===
-Passageiro: Pedro Henrique Alves do Nascimento
-Voo: GRU ? GIG
-Data: 15/03/2025
-Valor: R$ 724,31
-Método: Débito
-
-=== Ticket 15518096720 ===
-Passageiro: Pedro Henrique Alves do Nascimento
-Voo: VIX ? GRU
-Data: 21/03/2025
-Valor: R$ 720,75
-Método: Débito
-
-=== Ticket 15518096720 ===
-Passageiro: Pedro Henrique Alves do Nascimento
-Voo: GRU ? VIX
-Data: 20/03/2025
-Valor: R$ 1106,22
-Método: Crédito
-
-=== Ticket 12345678910 ===
+=== Ticket 123456789 ===
 Passageiro: Mauricio Zanetti Neto
-Voo: GRU ? VIX
-Data: 20/03/2025
-Valor: R$ 1106,22
-Método: Dinheiro
+Voo: GRU - CWB
+Data: 18/03/2025
+Valor: R$ 1215,17
+Metodo: Cr�dito
+
+=== Ticket 123456789 ===
+Passageiro: Mauricio Zanetti Neto
+Voo: GRU - CWB
+Data: 18/03/2025
+Valor: R$ 1215,17
+Metodo: D�bito
 

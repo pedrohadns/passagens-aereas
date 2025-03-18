@@ -1,0 +1,11 @@
+Data: 18/03/2025
+Horario: 01:00
+Origem: Sao Paulo
+Destino: Curitiba
+Passageiro: Mauricio Zanetti Neto
+Assento: 12B
+Numero E-Ticket: 50301
+Codigo Voo: 50
+Portao: A079
+Total: R$ 1215,17
+Forma de Pagamento: Débito
