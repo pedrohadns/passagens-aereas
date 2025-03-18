@@ -30,14 +30,14 @@ void configuracoes (){
     do{
         printf ("\n[4] Cadastrar voo\n");
         printf ("[5] Cadastrar passageiro\n");
-        // printf ("[6] Alterar dados passageiro\n");
-        // printf ("[7] Cadastrar funcionário\n");
-        // printf ("[8] Alterar dados funcionário\n");
-        printf ("[6] Voltar\n");
+        printf ("[6] Cadastrar funcionário\n");
+        printf ("[7] Alterar dados funcionário\n");
+        printf ("[8] Voltar\n");
         printf ("Digite a opção desejada: ");
         scanf ("%d", &opcao);
         getchar ();
         Passageiro novo_passageiro;
+        Funcionario funcionario_autorizado;
         switch (opcao){
             case 4:
                 incluirVoo ();
@@ -49,39 +49,36 @@ void configuracoes (){
             case 5:
                 cadastrarPassageiro (&novo_passageiro);
                 break;
-            /* case 6:
-                //alterarPassageiro ();
-                break;
-            case 7:
-                // Verificar se é gerente
-                //incluirFuncionario ();
-                break;
-            case 8:
-                // Verificar se é gerente
-                //alterarFuncionario ();
-                break; */
             case 6:
-                break;
-            default:
-                printf ("Opção inválida!\n");
-                break;
-        }
-    } while (opcao != 6);
-}
-
-void vendas (){
-    int opcao;
-    do{
-        printf ("\n[7] Realizar venda\n");
-        printf ("[8] Voltar\n");
-        printf ("Digite a opção desejada: ");
-        scanf ("%d", &opcao);
-        getchar ();
-        switch (opcao){
+                printf ("Digite seu nome: ");
+                leString (funcionario_autorizado.nome, 50);
+                printf ("Digite sua matrícula (CPF sem pontos): ");
+                leString (funcionario_autorizado.matricula, 12);
+                printf ("Digite seu cargo: ");
+                leString (funcionario_autorizado.cargo, 10);
+                if (validarFuncionario (funcionario_autorizado.matricula, funcionario_autorizado.nome, funcionario_autorizado.cargo) && strcmp (funcionario_autorizado.cargo, "GERENTE") == 0){
+                    incluirFuncionario ();
+                    break;
+                }
+                else{
+                    printf ("Você não tem permissão para fazer isso.\n");
+                    break;
+                }
             case 7:
-                realizarVenda ();
-                // Parte de pagamentos e ticket;
-                break;
+                printf ("Digite seu nome: ");
+                leString (funcionario_autorizado.nome, 50);
+                printf ("Digite sua matrícula (CPF sem pontos): ");
+                leString (funcionario_autorizado.matricula, 12);
+                printf ("Digite seu cargo: ");
+                leString (funcionario_autorizado.cargo, 10);
+                if (validarFuncionario (funcionario_autorizado.matricula, funcionario_autorizado.nome, funcionario_autorizado.cargo) && strcmp (funcionario_autorizado.cargo, "GERENTE") == 0){
+                    alterarFuncionario ();
+                    break;
+                }
+                else{
+                    printf ("Você não tem permissão para fazer isso.\n");
+                    break;
+                }
             case 8:
                 break;
             default:
@@ -89,6 +86,28 @@ void vendas (){
                 break;
         }
     } while (opcao != 8);
+}
+
+void vendas (){
+    int opcao;
+    do{
+        printf ("\n[9] Realizar venda\n");
+        printf ("[10] Voltar\n");
+        printf ("Digite a opção desejada: ");
+        scanf ("%d", &opcao);
+        getchar ();
+        switch (opcao){
+            case 9:
+                realizarVenda ();
+                // Parte de pagamentos e ticket;
+                break;
+            case 10:
+                break;
+            default:
+                printf ("Opção inválida!\n");
+                break;
+        }
+    } while (opcao != 10);
 }
 
 int calculaDiaSemana (int dia, int mes, int ano){

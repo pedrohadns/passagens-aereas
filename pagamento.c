@@ -1,16 +1,10 @@
 #include "pagamento.h"
 
-Funcionario funcionarios[] = {
-    {"SILVIO", "VENDEDOR", "12345678901"},
-    {"PEDRO", "GERENTE", "98765432102"},
-    {"MAURICIO", "VENDEDOR", "19283746503"},
-    {"PROFESSOR", "GERENTE", "123"}
-};
-
-#define NUM_FUNCIONARIOS (sizeof(funcionarios) / sizeof(funcionarios[0]))
+Funcionario *funcionarios_cadastrados;
+int quantidadeFuncionarios;
 
 int validarFuncionario(char *matricula, char *nome, char *cargo) {
-    for (int i = 0; i < NUM_FUNCIONARIOS; i++) {
+    for (int i = 0; i < quantidadeFuncionarios; i++) {
         for (int j = 0; j < strlen (nome); j++){
             nome[j] = toupper (nome[j]);
         }
@@ -18,9 +12,9 @@ int validarFuncionario(char *matricula, char *nome, char *cargo) {
             cargo[j] = toupper (cargo[j]);
         }
 
-        if (strcmp(funcionarios[i].matricula, matricula) == 0 &&
-            strcmp(funcionarios[i].nome, nome) == 0 &&
-            strcmp(funcionarios[i].cargo, cargo) == 0) {
+        if (strcmp(funcionarios_cadastrados[i].matricula, matricula) == 0 &&
+            strcmp(funcionarios_cadastrados[i].nome, nome) == 0 &&
+            strcmp(funcionarios_cadastrados[i].cargo, cargo) == 0) {
             return 1;
         }
     }
@@ -156,10 +150,10 @@ int realizarPagamento(Passageiro passageiro, Pagamento *pagamento, Voo voo, int 
         if(strcmp(metodo, "1") == 0) {
             char matricula[12], nome[50], cargo[10];
             printf("\n=== Validação do Funcionário ===\n");
-            printf("Matrícula: ");
-            scanf(" %11[^\n]s", matricula);
             printf("Nome: ");
             scanf(" %49[^\n]s", nome);
+            printf("Matrícula: ");
+            scanf(" %11[^\n]s", matricula);
             printf("Cargo: ");
             scanf(" %9[^\n]s", cargo);
 

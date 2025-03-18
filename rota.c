@@ -9,12 +9,10 @@ void leString (char *string, int tamanho){
 unsigned int obterCodigoVooAnterior (FILE *arquivo){
     if (arquivo == NULL) return 0;
     char buffer[256]; // Armazena a última linha
-    while (fgets (buffer, 256, arquivo)){ // Lê cada linha do arquivo e para na última quando fgets retorna NULL
-        buffer[strspn (buffer, "\n")] = 0;
-    }
+    while (fgets (buffer, 256, arquivo)); // Lê cada linha do arquivo e para na última quando fgets retorna NULL
     unsigned int codigoRotaAnterior = 0;
     sscanf (buffer, "%u", &codigoRotaAnterior);
-    return codigoRotaAnterior + 1;
+    return codigoRotaAnterior;
 }
 
 void cadastrarAeroporto (Aeroporto *aeroporto_sendo_cadastrado, char origemOuDestino){
@@ -109,7 +107,7 @@ void incluirVoo (){
         incluirVoo ();
     }
     Voo novoVoo; // Declara uma variável do tipo 'voo' para armazenar os dados do voô a ser cadastrado
-    novoVoo.codigoRota = obterCodigoVooAnterior (arquivo);
+    novoVoo.codigoRota = obterCodigoVooAnterior (arquivo) + 1;
     cadastrarAeroporto (&novoVoo.origem, 'o');
     cadastrarAeroporto (&novoVoo.destino, 'd');
     criarNomeRota (novoVoo.nomeRota, novoVoo);
@@ -132,6 +130,8 @@ void incluirVoo (){
     fseek (arquivo, 0, SEEK_END);
     escreveArquivo (arquivo, novoVoo);
     fclose (arquivo);
+    quantidadeVoos++;
+    vetorVoos = criarVetorVoos (quantidadeVoos);
 }
 
 Voo *criarVetorVoos (unsigned int quantidadeVoos){

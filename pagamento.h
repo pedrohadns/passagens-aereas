@@ -1,5 +1,6 @@
 #include "dias_do_ano.h"
 #include "assentos_disponiveis.h"
+#include "funcionarios.h"
 
 #ifndef PAGAMENTO_H
 #define PAGAMENTO_H
@@ -20,13 +21,6 @@ typedef struct {
     double preco;
     char metodoPagamento[20];
 } Pagamento;
-
-// Estrutura para armazenar o funcionário
-typedef struct {
-    char nome[50];
-    char cargo[10]; // "gerente" ou "vendedor"
-    char matricula[12]; // 11 dígitos + terminador de string
-} Funcionario;
 
 // Declaração das funções
 int validarFuncionario(char *matricula, char *nome, char *cargo);
