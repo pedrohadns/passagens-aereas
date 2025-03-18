@@ -6,35 +6,14 @@ void leString (char *string, int tamanho){
     string[strcspn (string, "\n")] = '\0';
 }
 
-unsigned int obterCodigoVooAnterior(FILE *arquivo) {
+unsigned int obterCodigoVooAnterior (FILE *arquivo){
     if (arquivo == NULL) return 0;
-
-    fseek(arquivo, 0, SEEK_END); // Vai para o final do arquivo
-    long pos = ftell(arquivo);
-    if (pos == 0) {
-        return 0;  // Se estiver vazio, retorna 0
+    char buffer[256]; // Armazena a última linha
+    while (fgets (buffer, 256, arquivo)){ // Lê cada linha do arquivo e para na última quando fgets retorna NULL
+        buffer[strspn (buffer, "\n")] = 0;
     }
-
-    char ultimaLinha[256]; // Buffer para armazenar a última linha
-    int encontrouDados = 0; // Flag para indicar se dados válidos foram encontrados
-
-    while (pos > 0) { 
-        fseek(arquivo, --pos, SEEK_SET); // Vai para a posição anterior
-        if (fgetc(arquivo) == '\n') {
-            fgets(ultimaLinha, sizeof(ultimaLinha), arquivo); // Lê a última linha
-            
-            // Verifica se a linha não é vazia
-            if (strlen(ultimaLinha) > 1) { 
-                encontrouDados = 1;
-                break;
-            }
-        }
-    }
-    if (!encontrouDados && pos != 0) return 0; // Se não encontrou dados válidos, retorna 0
-
-    // Extrai o ID do voo
     unsigned int codigoRotaAnterior = 0;
-    sscanf(ultimaLinha, "%u", &codigoRotaAnterior);
+    sscanf (buffer, "%u", &codigoRotaAnterior);
     return codigoRotaAnterior + 1;
 }
 

@@ -94,6 +94,9 @@ void compilar_latex(const char *pasta, const char *nome_arquivo) {
     int status_instalado = system("cmd /c where pdflatex > nul 2>&1");
     if (status_instalado != 0){ // pdflatex não está instalado
         printf ("pdflatex não está instalado.\n");
+        char comando_remover[512];
+        snprintf(comando_remover, sizeof(comando_remover), "rmdir /s /q %s", pasta);
+        system(comando_remover);
         exit(1);
     }
     char comando[512];
@@ -102,6 +105,9 @@ void compilar_latex(const char *pasta, const char *nome_arquivo) {
     int status = system(comando);
     if (status == -1) {
         perror("Erro ao compilar o arquivo LaTeX");
+        char comando_remover[512];
+        snprintf(comando_remover, sizeof(comando_remover), "rmdir /s /q %s", pasta);
+        system(comando_remover);
         exit(1);
     }
 }

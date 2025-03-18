@@ -1,5 +1,5 @@
 #include "menus.h"
-
+// Grupo: Pedro Henrique Alves do Nascimento, Mauricio Zanetti Neto, Silvio Eduardo Belinazzi
 #ifdef _WIN32
 int main (void){
     setlocale (LC_ALL, "Portuguese");
